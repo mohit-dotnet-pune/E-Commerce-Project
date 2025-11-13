@@ -1,9 +1,7 @@
-﻿using OrderServices.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderServices.Data;
+using OrderServices.DTOs;
 using OrderServices.Models;
-using System.Net.Http.Headers;
-using ProductServices.Models;
-using InventoryServices.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace OrderServices.Repository
 {
@@ -39,8 +37,8 @@ namespace OrderServices.Repository
             // Step 2: For each item, calculate total and link to newOrder
             foreach (var i in items)
             {
-                var product = await _httpClient.GetFromJsonAsync<Product>($"api/product/{i.ProductId}");
-                var inventory = await _httpClient1.GetFromJsonAsync<Inventory>($"api/inventory/{i.ProductId}");
+                var product = await _httpClient.GetFromJsonAsync<ProductDto>($"api/product/{i.ProductId}");
+                var inventory = await _httpClient1.GetFromJsonAsync<InventoryDto>($"api/inventory/{i.ProductId}");
 
                 if (inventory.StockQuantity < i.ProductQuantity)
                 {
