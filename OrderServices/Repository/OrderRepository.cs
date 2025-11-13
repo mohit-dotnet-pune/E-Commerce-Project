@@ -42,6 +42,8 @@ namespace OrderServices.Repository
 
                 if (inventory.StockQuantity < i.ProductQuantity)
                 {
+                    _db.orders.Remove(newOrder);
+                    await _db.SaveChangesAsync();
                     throw new Exception($"Product {product.ProductName} has lesser quantity");
                 }
 
@@ -49,6 +51,13 @@ namespace OrderServices.Repository
                 i.ProductName = product.ProductName;
                 i.OrderId = newOrder.OrderId; // ✅ link to saved order
                 _db.orderItems.Add(i);
+
+                var response = await _httpClient1.PutAsJsonAsync(
+                $"api/inventory/{i.ProductId}/reduce",
+                i.ProductQuantity
+            );
+
+                response.EnsureSuccessStatusCode(); // throws if 404 or 400
             }
 
             // Step 3: Update total amount

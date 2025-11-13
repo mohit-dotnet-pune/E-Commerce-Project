@@ -1,5 +1,6 @@
 ﻿using InventoryServices.Data;
 using InventoryServices.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryServices.Repository
 {
@@ -37,6 +38,21 @@ namespace InventoryServices.Repository
         public async Task<Inventory> GetInventoryById(int id)
         {
             return await _db.inventories.FindAsync(id);
+        }
+
+        public async Task<Inventory> ReduceStock(int productId, int quantity)
+        {
+            var inventory = await _db.inventories.FindAsync(productId);
+            if (inventory == null)
+                throw new Exception("Inventory not found");
+
+            if (inventory.StockQuantity < quantity)
+                throw new Exception("Inventory is lesser than required");
+
+            inventory.StockQuantity -= quantity;
+
+            await _db.SaveChangesAsync();
+            return inventory;
         }
 
         public async Task<Inventory> UpdateInventory(Inventory inventory)

@@ -9,5 +9,6 @@ namespace InventoryServices.Repository
         Task<bool> DeleteInventory(int id);
         Task<Inventory> GetInventoryById(int id);
         Task<IEnumerable<Inventory>> GetAllInventories();
+        Task<Inventory> ReduceStock(int productId, int quantity);
     }
 }

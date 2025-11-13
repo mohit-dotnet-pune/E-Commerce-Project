@@ -2,6 +2,7 @@
 using InventoryServices.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryServices.Controllers
 {
@@ -63,6 +64,17 @@ namespace InventoryServices.Controllers
         public async Task<ActionResult<bool>> DeleteInventory(int id)
         {
             var invent = await _repo.DeleteInventory(id);
+            if (invent == null)
+            {
+                return BadRequest();
+            }
+            return Ok(invent);
+        }
+
+        [HttpPut("{productId}/reduce")]
+        public async Task<IActionResult> ReduceStock(int productId, [FromBody] int quantity)
+        {
+            var invent = await _repo.ReduceStock(productId, quantity);
             if (invent == null)
             {
                 return BadRequest();

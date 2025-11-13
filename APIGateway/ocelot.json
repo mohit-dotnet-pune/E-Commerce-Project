@@ -36,18 +36,19 @@
       "UpstreamPathTemplate": "/order/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
-    {
-      "DownstreamPathTemplate": "/api/order",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5087
-        }
-      ],
-      "UpstreamPathTemplate": "/order",
-      "UpstreamHttpMethod": [ "Post" ]
-    }
+    //{
+    //  "DownstreamPathTemplate": "/api/order",
+    //  "DownstreamScheme": "http",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 5087
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/order",
+    //  "UpstreamHttpMethod": [ "Post" ]
+    //}
+
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5183"
