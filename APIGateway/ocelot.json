@@ -10,7 +10,7 @@
         }
       ],
       "UpstreamPathTemplate": "/product/{everything}",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/inventory/{everything}",
@@ -22,7 +22,19 @@
         }
       ],
       "UpstreamPathTemplate": "/inventory/{everything}",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/order",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5087
+        }
+      ],
+      "UpstreamPathTemplate": "/order",
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/order/{id}",
@@ -34,20 +46,8 @@
         }
       ],
       "UpstreamPathTemplate": "/order/{id}",
-      "UpstreamHttpMethod": [ "Get" ]
-    },
-    //{
-    //  "DownstreamPathTemplate": "/api/order",
-    //  "DownstreamScheme": "http",
-    //  "DownstreamHostAndPorts": [
-    //    {
-    //      "Host": "localhost",
-    //      "Port": 5087
-    //    }
-    //  ],
-    //  "UpstreamPathTemplate": "/order",
-    //  "UpstreamHttpMethod": [ "Post" ]
-    //}
+      "UpstreamHttpMethod": [ "GET" ]
+    }
 
   ],
   "GlobalConfiguration": {

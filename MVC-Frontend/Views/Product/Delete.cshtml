@@ -1,0 +1,10 @@
+﻿@model Product
+
+<h2>Delete Product</h2>
+
+<p>Are you sure you want to delete <strong>@Model.ProductName</strong>?</p>
+
+<form method="post">
+    <button class="btn btn-danger">Delete</button>
+    <a href="/Product/Index" class="btn btn-secondary">Cancel</a>
+</form>

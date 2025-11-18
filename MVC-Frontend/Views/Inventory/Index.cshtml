@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MVC_Frontend.Models.Inventory>
+
+@{
+    ViewData["Title"] = "Inventory List";
+}
+
+<h2>Inventory List</h2>
+
+<p>
+    <a class="btn btn-primary" href="/Inventory/Create">Create New Inventory</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Inventory Id</th>
+            <th>Product Id</th>
+            <th>Quantity</th>
+            <th>Last Updated</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.InventoryId</td>
+                <td>@i.ProductId</td>
+                <td>@i.StockQuantity</td>
+
+                <td>
+                    <a class="btn btn-info" href="/Inventory/Details/@i.InventoryId">Details</a>
+                    <a class="btn btn-warning" href="/Inventory/Edit/@i.InventoryId">Edit</a>
+                    <a class="btn btn-danger" href="/Inventory/Delete/@i.InventoryId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

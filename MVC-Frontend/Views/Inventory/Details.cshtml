@@ -1,0 +1,15 @@
+﻿@model MVC_Frontend.Models.Inventory
+
+@{
+    ViewData["Title"] = "Inventory Details";
+}
+
+<h2>Inventory Details</h2>
+
+<div class="card p-3">
+    <p><strong>Inventory ID:</strong> @Model.InventoryId</p>
+    <p><strong>Product ID:</strong> @Model.ProductId</p>
+    <p><strong>Quantity:</strong> @Model.StockQuantity</p>
+</div>
+
+<a class="btn btn-secondary" href="/Inventory/Index">Back</a>

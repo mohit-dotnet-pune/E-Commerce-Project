@@ -1,0 +1,43 @@
+﻿@model List<MVC_Frontend.Models.Order>
+
+@{
+    ViewData["Title"] = "Customer Orders";
+}
+
+<h2>Orders for Customer @Model.FirstOrDefault()?.CustomerId</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <p>No orders found for this customer.</p>
+}
+else
+{
+    @foreach (var order in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                <strong>Order ID:</strong> @order.OrderId |
+                <strong>Total Amount:</strong> @order.OrderAmount
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in order.orderItems)
+                        {
+                            <tr>
+                                <td>@item.ProductName</td>
+                                <td>@item.ProductQuantity</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}

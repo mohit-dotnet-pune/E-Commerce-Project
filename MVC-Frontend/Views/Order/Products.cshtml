@@ -1,0 +1,60 @@
+﻿@model List<MVC_Frontend.Models.Product>
+
+<h2>Select Products</h2>
+
+<form method="post" asp-action="ReviewOrder">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Qty</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox"
+                               name="SelectedProducts[@i].IsSelected"
+                               value="true" />
+                        <input type="hidden"
+                               name="SelectedProducts[@i].IsSelected"
+                               value="false" />
+
+                        <input type="hidden"
+                               name="SelectedProducts[@i].ProductId"
+                               value="@Model[i].ProductId" />
+                        <input type="hidden"
+                               name="SelectedProducts[@i].ProductName"
+                               value="@Model[i].ProductName" />
+                        <input type="hidden"
+                               name="SelectedProducts[@i].ProductPrice"
+                               value="@Model[i].ProductPrice" />
+                    </td>
+
+                    <td>@Model[i].ProductId</td>
+                    <td>@Model[i].ProductName</td>
+                    <td>@Model[i].ProductDescription</td>
+                    <td>@Model[i].ProductPrice</td>
+
+                    <td>
+                        <input type="number"
+                               name="SelectedProducts[@i].ProductQuantity"
+                               min="0"
+                               value="0"
+                               class="form-control" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Next</button>
+</form>

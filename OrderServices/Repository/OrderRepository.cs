@@ -32,7 +32,7 @@ namespace OrderServices.Repository
             };
 
             _db.orders.Add(newOrder);
-            await _db.SaveChangesAsync(); // generates OrderId
+            await _db.SaveChangesAsync();
 
             // Step 2: For each item, calculate total and link to newOrder
             foreach (var i in items)
@@ -49,7 +49,7 @@ namespace OrderServices.Repository
 
                 amount += (product.ProductPrice * i.ProductQuantity);
                 i.ProductName = product.ProductName;
-                i.OrderId = newOrder.OrderId; // ✅ link to saved order
+                i.OrderId = newOrder.OrderId;
                 _db.orderItems.Add(i);
 
                 var response = await _httpClient1.PutAsJsonAsync(

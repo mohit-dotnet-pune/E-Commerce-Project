@@ -1,0 +1,27 @@
+﻿@model Product
+
+<h2>Product Details</h2>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <h4 class="card-title">@Model.ProductName</h4>
+        <h6 class="card-subtitle mb-2 text-muted">ID: @Model.ProductId</h6>
+
+        <p>
+            <strong>Description:</strong><br />
+            @Model.ProductDescription
+        </p>
+
+        <p>
+            <strong>Price:</strong> ₹@Model.ProductPrice
+        </p>
+
+        <p>
+            <strong>Category ID:</strong> @Model.CategoryId
+        </p>
+
+        <a href="/Product/Edit/@Model.ProductId" class="btn btn-warning">Edit</a>
+        <a href="/Product/Delete/@Model.ProductId" class="btn btn-danger">Delete</a>
+        <a href="/Product/Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
